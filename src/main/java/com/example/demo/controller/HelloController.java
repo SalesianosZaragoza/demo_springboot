@@ -13,4 +13,10 @@ public class HelloController {
 		return "hola";
 	}
 
+	// localhost:8080/
+	@RequestMapping("/")
+	public String index(Model model) {
+		return "index";
+	}
+
 }
