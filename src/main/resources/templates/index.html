@@ -8,10 +8,10 @@
 	<!-- esto se enviara a localhost:8080/insertStudent -->
 	<form th:action="@{/insertStudent}" th:object="${student}">
 		<span>Nombre:</span>
-		<input type="text" th:field="*{nombre}">
+		<input type="text" th:field="*{nombre}"/>
 		<span>Apellido:</span>
-		<input type="text" th:field="*{apellido}">
-		<input type="submit" value="Enviar datos">
+		<input type="text" th:field="*{apellido}"/>
+		<input type="submit" value="Enviar datos"/>
 	</form>
 </body>
 </html>

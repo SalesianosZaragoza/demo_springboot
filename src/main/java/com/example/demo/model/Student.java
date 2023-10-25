@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
+@Getter
 public class Student {
-	public String nombre;
+	private String nombre;
 	private String apellido;
 
 }
