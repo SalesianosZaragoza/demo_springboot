@@ -17,7 +17,7 @@ public class StudentController {
 	@RequestMapping("/insertStudent")
 	public String insertarEstudiante(Student student, Model model) {
 		System.out.println("name:" + student.getNombre());
-
+		h2.helloFromH2();
 		return "fin";
 	}
 }
