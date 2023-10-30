@@ -4,14 +4,14 @@ import org.springframework.stereotype.Component;
 
 //creara para srping un pbjeto en memoria que va a reutilizar
 @Component
-public class H2Connection implements DBConnection {
+public class MySQLConnection implements DBConnection {
 
-	public void helloFromH2() {
-		System.out.println("hola desde el controlador de H2");
+	public void helloFromMysql() {
+		System.out.println("hola desde el controlador de Mysql");
 	}
 
 	@Override
 	public void helloFromWhateverDatabase() {
-		helloFromH2();
+		helloFromMysql();
 	}
 }

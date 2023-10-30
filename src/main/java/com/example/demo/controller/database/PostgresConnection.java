@@ -4,14 +4,15 @@ import org.springframework.stereotype.Component;
 
 //creara para srping un pbjeto en memoria que va a reutilizar
 @Component
-public class H2Connection implements DBConnection {
+public class PostgresConnection implements DBConnection {
 
-	public void helloFromH2() {
-		System.out.println("hola desde el controlador de H2");
+	public void helloFromPostgres() {
+		System.out.println("hola desde el controlador de Postgres");
 	}
 
 	@Override
 	public void helloFromWhateverDatabase() {
-		helloFromH2();
+		// TODO Auto-generated method stub
+		helloFromPostgres();
 	}
 }
