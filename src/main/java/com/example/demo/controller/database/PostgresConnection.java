@@ -1,9 +1,11 @@
 package com.example.demo.controller.database;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //creara para srping un pbjeto en memoria que va a reutilizar
-@Component(value = "postgres")
+@Profile(value = "postgres")
+@Component
 public class PostgresConnection implements DBConnection {
 
 	public void helloFromPostgres() {

@@ -1,9 +1,11 @@
 package com.example.demo.controller.database;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //creara para srping un pbjeto en memoria que va a reutilizar
-@Component(value = "h2")
+@Profile(value = "h2")
+@Component
 public class H2Connection implements DBConnection {
 
 	public void helloFromH2() {
