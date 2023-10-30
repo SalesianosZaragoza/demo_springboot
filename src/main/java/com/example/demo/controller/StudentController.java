@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import com.example.demo.model.Student;
 @Controller
 public class StudentController {
 	@Autowired
+	@Qualifier(value = "postgres")
 	DBConnection db;
 
 	// localhost:8080/insertStudent

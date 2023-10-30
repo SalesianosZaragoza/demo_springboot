@@ -3,7 +3,7 @@ package com.example.demo.controller.database;
 import org.springframework.stereotype.Component;
 
 //creara para srping un pbjeto en memoria que va a reutilizar
-@Component
+@Component(value = "h2")
 public class H2Connection implements DBConnection {
 
 	public void helloFromH2() {
