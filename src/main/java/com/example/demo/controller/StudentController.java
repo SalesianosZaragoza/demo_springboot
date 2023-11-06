@@ -34,6 +34,9 @@ public class StudentController {
 				for (Student stud : lista) {
 					System.out.println(stud.getNombre() + " " + stud.getApellido());
 				}
+
+				model.addAttribute("estudiantes", lista);
+
 		return "fin";
 	}
 }
