@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.controller.database.DBConnection;
@@ -39,4 +40,18 @@ public class StudentController {
 
 		return "fin";
 	}
+
+	// localhost:8081/updateStudent/gorka
+	@RequestMapping("/updateStudent/{nombre}")
+	public String actualizarEstudiante(@PathVariable String nombre, Model model) {
+		Student stud = jdbcTemplate.queryForObject(
+				"SELECT * FROM STUDENTS WHERE nombre=?", 
+				new StudentRowMapper(), new Object[] { nombre });
+		System.out.println(stud.getNombre() + " " + stud.getApellido());
+		return "fin";
+	}
+	
+	
+	
+	
 }
