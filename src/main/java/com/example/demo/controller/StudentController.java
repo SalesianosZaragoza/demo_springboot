@@ -25,11 +25,19 @@ public class StudentController {
 	@RequestMapping("/insertStudent")
 	public String insertarEstudiante(Student student, Model model) {
 		System.out.println("name:" + student.getNombre());
+		// comprobar si el estudiante existe en la BBDD
+		// si no existe
 		jdbcTemplate.update(
 				"insert into students(nombre,apellido) values (?,?)",
 				student.getNombre(), student.getApellido()
 
 				);
+				// si existe
+//		jdbcTemplate.update(
+//				"update ...",
+//				student.getNombre(), student.getApellido()
+//
+//				);
 		
 				List<Student> lista = jdbcTemplate.query("SELECT * FROM STUDENTS", new StudentRowMapper());
 				for (Student stud : lista) {
@@ -48,7 +56,9 @@ public class StudentController {
 				"SELECT * FROM STUDENTS WHERE nombre=?", 
 				new StudentRowMapper(), new Object[] { nombre });
 		System.out.println(stud.getNombre() + " " + stud.getApellido());
-		return "fin";
+
+		model.addAttribute("student", stud);
+		return "index";
 	}
 	
 	
