@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.controller.database.DBConnection;
 import com.example.demo.model.Student;
@@ -60,4 +61,22 @@ public class StudentController {
 		model.addAttribute("student", stud);
 		return "index";
 	}
+
+	// http://localhost:8081/deleteStudent/1
+	@RequestMapping("/deleteStudent/{id}/")
+	public String borrarEstudiante(@PathVariable Integer id, Model model) {
+		jdbcTemplate.update("DELETE FROM STUDENTS WHERE id=?", id);
+
+		List<Student> lista = jdbcTemplate.query("SELECT * FROM STUDENTS", new StudentRowMapper());
+		model.addAttribute("estudiantes", lista);
+		return "fin";
+	}
+
+	// http://localhost:8081/searchStudent?search=gorka
+	@RequestMapping("/searchStudent")
+	public String buscarEstudiantes(@RequestParam("search") String userInput, Model model) {
+
+		return "fin";
+	}
+
 }
