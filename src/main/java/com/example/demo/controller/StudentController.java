@@ -15,7 +15,9 @@ import com.example.demo.model.StudentRowMapper;
 
 @Controller
 public class StudentController {
-	@Autowired
+	@Autowired // usa esta interfaz
+	// @Qualifier(value = "postgres") // me conectas el que tenga este valor
+	// automáticamente
 	DBConnection db;
 
 	@Autowired
@@ -25,43 +27,37 @@ public class StudentController {
 	@RequestMapping("/insertStudent")
 	public String insertarEstudiante(Student student, Model model) {
 		System.out.println("name:" + student.getNombre());
-		// comprobar si el estudiante existe en la BBDD
-		// si no existe
-		jdbcTemplate.update(
-				"insert into students(nombre,apellido) values (?,?)",
-				student.getNombre(), student.getApellido()
+		// TODO comprobar si el estudiante existe, si no existe hacer insert, si existe
+		// un update
 
-				);
-				// si existe
-//		jdbcTemplate.update(
-//				"update ...",
-//				student.getNombre(), student.getApellido()
-//
-//				);
+		if (student.getId() == null) {
+			jdbcTemplate.update("insert into students(nombre, apellido) values(?, ?);", student.getNombre(),
+					student.getApellido());
+		} else {
+			// si existe un update
+			jdbcTemplate.update("UPDATE students SET nombre = ?, apellido = ? WHERE id=?;", student.getNombre(),
+					student.getApellido(), student.getId());
+		}
+
+		// creamos una lista de estudiantes que gracias al StudentRowMapper nos dará la
+		// estructura
+		List<Student> lista = jdbcTemplate.query("SELECT * FROM STUDENTS", new StudentRowMapper());
+		for (Student stud : lista) {
+			System.out.println(stud.getNombre() + stud.getApellido());
+		}
 		
-				List<Student> lista = jdbcTemplate.query("SELECT * FROM STUDENTS", new StudentRowMapper());
-				for (Student stud : lista) {
-					System.out.println(stud.getNombre() + " " + stud.getApellido());
-				}
-
-				model.addAttribute("estudiantes", lista);
-
+		model.addAttribute("estudiantes", lista);
 		return "fin";
 	}
 
-	// localhost:8081/updateStudent/gorka
-	@RequestMapping("/updateStudent/{nombre}")
-	public String actualizarEstudiante(@PathVariable String nombre, Model model) {
-		Student stud = jdbcTemplate.queryForObject(
-				"SELECT * FROM STUDENTS WHERE nombre=?", 
-				new StudentRowMapper(), new Object[] { nombre });
-		System.out.println(stud.getNombre() + " " + stud.getApellido());
+	// localhost:8080/updateStudent/alberto
+	@RequestMapping("/updateStudent/{id}") // le paso un path variable en este caso nombre
+	public String actualizarEstudiante(@PathVariable Integer id, Model model) {
+		Student stud = jdbcTemplate.queryForObject("SELECT * FROM STUDENTS WHERE id=?", new StudentRowMapper(),
+				new Object[] { id });
 
+		System.out.println(stud.getNombre() + " " + stud.getApellido());
 		model.addAttribute("student", stud);
 		return "index";
 	}
-	
-	
-	
-	
 }

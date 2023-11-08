@@ -7,21 +7,15 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class StudentRowMapper implements RowMapper<Student> {
 
-	@Override
+	@Override // lo que hace esto es mapear la estructura de la tabla para que luego podamos
+				// trabajar con ella
 	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Student stud = new Student();
-
-		stud.setNombre(rs.getString("nombre"));
-		stud.setApellido(rs.getString("apellido"));
-
-		return stud;
+		Student student = new Student();
+		student.setId(rs.getInt("id"));
+		student.setNombre(rs.getString("nombre"));
+		student.setApellido(rs.getString("apellido"));
+		return student;
 	}
-
-//	@Override
-//	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 
 }
