@@ -75,7 +75,13 @@ public class StudentController {
 	// http://localhost:8081/searchStudent?search=gorka
 	@RequestMapping("/searchStudent")
 	public String buscarEstudiantes(@RequestParam("search") String userInput, Model model) {
+		List<Student> lista = jdbcTemplate.query("SELECT * FROM STUDENTS WHERE nombre = ? OR apellido = ?",
+				new StudentRowMapper(), userInput, userInput);
+		for (Student stud : lista) {
+			System.out.println(stud.getNombre() + stud.getApellido());
+		}
 
+		model.addAttribute("estudiantes", lista);
 		return "fin";
 	}
 
