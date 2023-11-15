@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.controller.database.DBConnection;
 import com.example.demo.model.Student;
 import com.example.demo.model.StudentRowMapper;
+import com.example.demo.service.StudentService;
 
 @Controller
 public class StudentController {
@@ -24,32 +25,19 @@ public class StudentController {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	StudentService service;
+
 	// localhost:8080/insertStudent
 	@RequestMapping("/insertStudent")
 	public String insertarEstudiante(Student student, Model model) {
-		System.out.println("name:" + student.getNombre());
-		// TODO comprobar si el estudiante existe, si no existe hacer insert, si existe
-		// un update
-
-		if (student.getId() == null) {
-			jdbcTemplate.update("insert into students(nombre, apellido) values(?, ?);", student.getNombre(),
-					student.getApellido());
-		} else {
-			// si existe un update
-			jdbcTemplate.update("UPDATE students SET nombre = ?, apellido = ? WHERE id=?;", student.getNombre(),
-					student.getApellido(), student.getId());
-		}
-
-		// creamos una lista de estudiantes que gracias al StudentRowMapper nos dará la
-		// estructura
-		List<Student> lista = jdbcTemplate.query("SELECT * FROM STUDENTS", new StudentRowMapper());
-		for (Student stud : lista) {
-			System.out.println(stud.getNombre() + stud.getApellido());
-		}
 		
+		List<Student> lista = service.insertStudent(student);
+
 		model.addAttribute("estudiantes", lista);
 		return "fin";
 	}
+
 
 	// localhost:8080/updateStudent/alberto
 	@RequestMapping("/updateStudent/{id}") // le paso un path variable en este caso nombre
