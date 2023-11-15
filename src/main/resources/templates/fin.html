@@ -5,24 +5,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	
-	<form th:action="@{/searchStudent}">
-		<span>Buscar:</span>
-		<input type="text" th:name="search"/>
-	</form>
-	
-	<table>
+	<table border="1px" style="display: table; margin:auto; margin-top:200px; width: 50%;border-collapse: collapse;">
 		<th>ID</th>
 		<th>Nombre</th>
 		<th>Apellido</th>
-		<th>Acciones</th>
+		<th colspan="2">Acciones</th>
 		<tbody>
 			<tr th:each="stud: ${estudiantes}">
 				<td th:text="${stud.id}"/>
 				<td th:text="${stud.nombre}"/>
 				<td th:text="${stud.apellido}"/>
-				<td><a th:href="@{'/deleteStudent/'+${stud.id}}">Hacer click</a></td>
+				<td><a th:href="@{'/updateStudent/'+${stud.id}}">Update</a></td>
+				<td><a th:href="@{'/deleteStudent/'+${stud.id}}">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>

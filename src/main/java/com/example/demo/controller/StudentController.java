@@ -43,7 +43,7 @@ public class StudentController {
 	@RequestMapping("/updateStudent/{id}") // le paso un path variable en este caso nombre
 	public String actualizarEstudiante(@PathVariable Integer id, Model model) {
 
-		Student stud = service.updateStudent(id);
+		Student stud = service.updateStudentList(id);
 
 		model.addAttribute("student", stud);
 
@@ -69,10 +69,8 @@ public class StudentController {
 		return "fin";
 	}
 
-
-	@SuppressWarnings("deprecation")
 	public Student findById(long id) {
-		Student stud = service.searchById(id);
+		Student stud = service.searchStudentById(id);
 		return stud;
 	}
 
