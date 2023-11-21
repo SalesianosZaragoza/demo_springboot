@@ -19,8 +19,6 @@ import com.example.demo.service.StudentService;
 public class StudentController {
 
 
-	@Autowired
-	StudentService service;
 
 	@Autowired
 	StudentService service;
