@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
 
+
 @Service // component, repository esas tres anotaciones hacen que solo se cree un objeto
 			// de esta clase y se vaya usando conforme hace falta
 public class StudentService {
@@ -32,6 +33,7 @@ public class StudentService {
 		}
 		return lista;
 	}
+
 
 
 	public Student updateStudentList(Integer id) {
@@ -62,3 +64,4 @@ public class StudentService {
 	}
 
 }
+

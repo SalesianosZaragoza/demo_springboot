@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Student;
+
+import com.example.demo.model.StudentRowMapper;
+
 import com.example.demo.service.StudentService;
 
 @Controller
@@ -19,13 +22,16 @@ public class StudentController {
 	@Autowired
 	StudentService service;
 
+	@Autowired
+	StudentService service;
+
 	// localhost:8080/insertStudent
 	@RequestMapping("/insertStudent")
 	public String insertarEstudiante(Student student, Model model) {
 
-
-		List<Student> lista = service.insertStudent(student);
 		
+		List<Student> lista = service.insertStudent(student);
+
 		model.addAttribute("estudiantes", lista);
 		return "fin";
 	}

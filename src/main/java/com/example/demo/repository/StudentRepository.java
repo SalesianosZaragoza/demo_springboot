@@ -3,7 +3,9 @@ package com.example.demo.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -42,5 +44,6 @@ public class StudentRepository {
 	public List<Student> searchByNombreOrApellido(String userInput) {
 		return jdbcTemplate.query("SELECT * FROM STUDENTS WHERE nombre = ? OR apellido = ?", new StudentRowMapper(),
 				userInput, userInput);
+
 	}
 }
