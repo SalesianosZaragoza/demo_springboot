@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
 
-@Service
+
+@Service // component, repository esas tres anotaciones hacen que solo se cree un objeto
+			// de esta clase y se vaya usando conforme hace falta
 public class StudentService {
 
 	@Autowired
@@ -33,4 +35,33 @@ public class StudentService {
 	}
 
 
+
+	public Student updateStudentList(Integer id) {
+		Student stud = studentRepo.findById(id);
+
+		System.out.println(stud.getNombre() + " " + stud.getApellido());
+		return stud;
+	}
+
+	public List<Student> deleteStudent(Integer id) {
+		studentRepo.delete(id);
+
+		List<Student> lista = studentRepo.findAll();
+		return lista;
+	}
+
+
+	public List<Student> searchStudent(String userInput) {
+		List<Student> lista = studentRepo.searchByNombreOrApellido(userInput);
+		for (Student stud : lista) {
+			System.out.println(stud.getNombre() + stud.getApellido());
+		}
+		return lista;
+	}
+
+	public Student searchStudentById(long id) {
+		return studentRepo.findById(id);
+	}
+
 }
+
