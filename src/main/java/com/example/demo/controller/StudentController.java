@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Student;
-
-import com.example.demo.model.StudentRowMapper;
-
 import com.example.demo.service.StudentService;
 
 @Controller
