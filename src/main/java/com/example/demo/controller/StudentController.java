@@ -18,6 +18,7 @@ public class StudentController {
 
 
 	@Autowired
+	private
 	StudentService service;
 
 	// localhost:8080/insertStudent
@@ -25,7 +26,7 @@ public class StudentController {
 	public String insertarEstudiante(Student student, Model model) {
 
 		
-		List<Student> lista = service.insertStudent(student);
+		List<Student> lista = getService().insertStudent(student);
 
 		model.addAttribute("estudiantes", lista);
 		return "fin";
@@ -36,7 +37,7 @@ public class StudentController {
 	@RequestMapping("/updateStudent/{id}") // le paso un path variable en este caso nombre
 	public String actualizarEstudiante(@PathVariable Integer id, Model model) {
 
-		Student stud = service.updateStudentList(id);
+		Student stud = getService().updateStudentList(id);
 
 		model.addAttribute("student", stud);
 
@@ -46,7 +47,7 @@ public class StudentController {
 
 	@RequestMapping("/deleteStudent/{id}") // le paso un path variable en este caso nombre
 	public String borrarEstudiante(@PathVariable Integer id, Model model) {
-		List<Student> lista = service.deleteStudent(id);
+		List<Student> lista = getService().deleteStudent(id);
 
 		model.addAttribute("estudiantes", lista);
 		return "fin";
@@ -56,15 +57,18 @@ public class StudentController {
 	// http://localhost:8080/searchStudent?search=gorka
 	@RequestMapping("/searchStudent")
 	public String buscarEstudiantes(@RequestParam("search") String userInput, Model model) {
-		List<Student> lista = service.searchStudent(userInput);
+		List<Student> lista = getService().searchStudent(userInput);
 
 		model.addAttribute("estudiantes", lista);
 		return "fin";
 	}
 
-	public Student findById(long id) {
-		Student stud = service.searchStudentById(id);
-		return stud;
+	public StudentService getService() {
+		return service;
+	}
+
+	public void setService(StudentService service) {
+		this.service = service;
 	}
 
 }
