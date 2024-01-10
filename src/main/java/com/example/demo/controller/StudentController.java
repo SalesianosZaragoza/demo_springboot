@@ -26,7 +26,7 @@ public class StudentController {
 	public String insertarEstudiante(Student student, Model model) {
 
 		
-		List<Student> lista = getService().insertStudent(student);
+		List<Student> lista = service.insertStudent(student);
 
 		model.addAttribute("estudiantes", lista);
 		return "fin";
