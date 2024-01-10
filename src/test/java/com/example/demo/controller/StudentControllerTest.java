@@ -34,24 +34,27 @@ class StudentControllerTest {
 
 	@Test
 	void testInsertarEstudiante() {
+		// given
 		Model model = new ExtendedModelMap();
-		Student student = new Student();
-		List<Student> listaPrecreada = new ArrayList<Student>();
-		listaPrecreada.add(new Student(1, "ignacio", "bielsa"));
-		listaPrecreada.add(new Student(2, "alejandro", "tesan"));
-		
-		when(service.insertStudent(student)).thenReturn(listaPrecreada);
-
-		String finPage = controller.insertarEstudiante(student, model);
+		when(service.insertStudent(new Student())).thenReturn(createMockedList());
+		// when
+		String finPage = controller.insertarEstudiante(new Student(), model);
+		// then
 		assertEquals("fin", finPage);
 
 		assertNotNull(model.getAttribute("estudiantes"));
 		assertInstanceOf(List.class, model.getAttribute("estudiantes"));
 
 		List<Student> lista = (List<Student>) model.getAttribute("estudiantes");
-		
 		assertFalse(lista.isEmpty());
 
+	}
+
+	private List<Student> createMockedList() {
+		List<Student> listaPrecreada = new ArrayList<Student>();
+		listaPrecreada.add(new Student(1, "ignacio", "bielsa"));
+		listaPrecreada.add(new Student(2, "alejandro", "tesan"));
+		return listaPrecreada;
 	}
 
 	@BeforeAll
