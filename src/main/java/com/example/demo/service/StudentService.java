@@ -14,6 +14,7 @@ import com.example.demo.repository.StudentRepository;
 public class StudentService {
 
 	@Autowired
+	private
 	StudentRepository studentRepo;
 
 	public List<Student> insertStudent(Student student) {
@@ -61,6 +62,18 @@ public class StudentService {
 
 	public Student searchStudentById(long id) {
 		return studentRepo.findById(id);
+	}
+
+
+
+	public StudentRepository getStudentRepo() {
+		return studentRepo;
+	}
+
+
+
+	public void setStudentRepo(StudentRepository studentRepo) {
+		this.studentRepo = studentRepo;
 	}
 
 }

@@ -27,6 +27,8 @@ public class StudentController {
 
 		
 		List<Student> lista = service.insertStudent(student);
+		if (lista.isEmpty())
+			return "index";
 
 		model.addAttribute("estudiantes", lista);
 		return "fin";
