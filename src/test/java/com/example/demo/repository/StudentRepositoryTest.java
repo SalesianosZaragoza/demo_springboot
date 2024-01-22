@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.jdbc.JdbcTestUtils;
 
 import com.example.demo.model.Student;
 
@@ -74,14 +76,30 @@ class StudentRepositoryTest {
 	@Test
 	void testFindAll() {
 		List<Student> lista = repo.findAll();
-		assertFalse(lista.isEmpty());
-		assertEquals(2, lista.size());
+		assertTrue(lista.isEmpty());
+		assertEquals(0, lista.size());
 
 		repo.insert(new Student(3, "Alberto", "Saez"));
 
 		lista = repo.findAll();
 		assertFalse(lista.isEmpty());
-		assertEquals(3, lista.size());
+		assertEquals(1, lista.size());
+
+	}
+
+	@Test
+	void testDelete() {
+		repo.insert(new Student(3, "Alberto", "Saez"));
+		List<Student> lista = repo.findAll();
+		lista = repo.findAll();
+		assertFalse(lista.isEmpty());
+		assertEquals(1, lista.size());
+
+		repo.delete(3);
+
+		lista = repo.findAll();
+		assertTrue(lista.isEmpty());
+		assertEquals(0, lista.size());
 
 	}
 
@@ -107,6 +125,7 @@ class StudentRepositoryTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
+		JdbcTestUtils.deleteFromTables(template, "students");
 	}
 
 
