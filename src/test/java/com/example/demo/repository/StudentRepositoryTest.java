@@ -1,9 +1,13 @@
 package com.example.demo.repository;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -66,7 +70,22 @@ class StudentRepositoryTest {
 				}, "Name too long"
 		);
 	}
-//	public animmmous() {
+
+	@Test
+	void testFindAll() {
+		List<Student> lista = repo.findAll();
+		assertFalse(lista.isEmpty());
+		assertEquals(2, lista.size());
+
+		repo.insert(new Student(3, "Alberto", "Saez"));
+
+		lista = repo.findAll();
+		assertFalse(lista.isEmpty());
+		assertEquals(3, lista.size());
+
+	}
+
+	// public animmmous() {
 //		return     repo.insert(student);
 //		}
 
