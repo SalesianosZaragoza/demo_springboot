@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.example.demo.model.Student;
+
 @SpringBootTest
 class StudentRepositoryTest {
 
@@ -20,9 +23,18 @@ class StudentRepositoryTest {
 	StudentRepository repo;
 
 	@Test
-	void test() {
+	void testInserrt() {
 		assertNotNull(template);
+
+		Student student = new Student(null, "Fernando", "Del Pino");
+		assertDoesNotThrow(() -> repo.insert(student));
+
+		// assertThrows(SQLException.class, repo.insert(student));
+
 	}
+//	public animmmous() {
+//		return     repo.insert(student);
+//		}
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -35,6 +47,8 @@ class StudentRepositoryTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		repo = new StudentRepository();
+		repo.setJdbcTemplate(template);
 	}
 
 	@AfterEach

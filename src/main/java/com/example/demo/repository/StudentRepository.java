@@ -16,6 +16,7 @@ import com.example.demo.model.StudentRowMapper;
 public class StudentRepository {
 
 	@Autowired
+	private
 	JdbcTemplate jdbcTemplate;
 
 	public void insert(Student student) {
@@ -45,5 +46,13 @@ public class StudentRepository {
 		return jdbcTemplate.query("SELECT * FROM STUDENTS WHERE nombre = ? OR apellido = ?", new StudentRowMapper(),
 				userInput, userInput);
 
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 }
