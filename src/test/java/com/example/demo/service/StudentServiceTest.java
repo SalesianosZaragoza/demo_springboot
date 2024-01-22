@@ -46,9 +46,10 @@ class StudentServiceTest {
 		
 		//When
 		List<Student> listStudents = service.insertStudent(student);
+		// Then
 		assertNotNull(listStudents);
 		assertFalse(listStudents.isEmpty());
-		//Then
+
 		verify(repository, times(1)).insert(student);
 		verify(repository, times(0)).update(student);
 		verify(repository, times(1)).findAll();
@@ -71,9 +72,10 @@ class StudentServiceTest {
 
 		// When
 		List<Student> listStudents = service.insertStudent(student);
+		// Then
 		assertNotNull(listStudents);
 		assertFalse(listStudents.isEmpty());
-		// Then
+
 		verify(repository, times(0)).insert(student);
 		verify(repository, times(1)).update(student);
 		verify(repository, times(1)).findAll();
