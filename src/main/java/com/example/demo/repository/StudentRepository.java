@@ -3,9 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +18,8 @@ public class StudentRepository {
 	JdbcTemplate jdbcTemplate;
 
 	public void insert(Student student) {
-		jdbcTemplate.update("insert into students(nombre, apellido) values(?, ?);", student.getNombre(),
+		jdbcTemplate.update("insert into students(id, nombre, apellido) values(?, ?, ?);", student.getId(),
+				student.getNombre(),
 				student.getApellido());
 	}
 
