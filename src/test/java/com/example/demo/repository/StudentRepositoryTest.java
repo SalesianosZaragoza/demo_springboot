@@ -91,7 +91,6 @@ class StudentRepositoryTest {
 	void testDelete() {
 		repo.insert(new Student(3, "Alberto", "Saez"));
 		List<Student> lista = repo.findAll();
-		lista = repo.findAll();
 		assertFalse(lista.isEmpty());
 		assertEquals(1, lista.size());
 
@@ -121,11 +120,11 @@ class StudentRepositoryTest {
 		repo = new StudentRepository();
 		assertNotNull(template);
 		repo.setJdbcTemplate(template);
+		JdbcTestUtils.deleteFromTables(template, "students");
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		JdbcTestUtils.deleteFromTables(template, "students");
 	}
 
 
