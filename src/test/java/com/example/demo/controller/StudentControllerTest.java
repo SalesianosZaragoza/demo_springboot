@@ -36,9 +36,11 @@ class StudentControllerTest {
 	void testInsertarEstudiante() {
 		// given
 		Model model = new ExtendedModelMap();
-		when(service.insertStudent(new Student())).thenReturn(createMockedList());
+		Student student = new Student();
+
+		when(service.insertStudent(student)).thenReturn(createMockedList());
 		// when
-		String finPage = controller.insertarEstudiante(new Student(), model);
+		String finPage = controller.insertarEstudiante(student, model);
 		// then
 		assertEquals("fin", finPage);
 
