@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -31,10 +30,6 @@ class StudentTest {
 		assertEquals(null, student.getApellido());
 	}
 
-	@Test
-	void testSetApellido() {
-		fail("Not yet implemented");
-	}
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

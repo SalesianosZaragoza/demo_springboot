@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -76,27 +75,6 @@ class StudentControllerTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
-	}
-
-
-	@Test
-	void testActualizarEstudiante() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testBorrarEstudiante() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testBuscarEstudiantes() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testFindById() {
-		fail("Not yet implemented");
 	}
 
 }

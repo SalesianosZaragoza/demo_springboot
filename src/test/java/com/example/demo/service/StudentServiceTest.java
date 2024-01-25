@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
@@ -82,25 +81,6 @@ class StudentServiceTest {
 
 	}
 
-	@Test
-	void testUpdateStudentList() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testDeleteStudent() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSearchStudent() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSearchStudentById() {
-		fail("Not yet implemented");
-	}
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

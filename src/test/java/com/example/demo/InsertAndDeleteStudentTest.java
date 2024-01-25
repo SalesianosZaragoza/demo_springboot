@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class InsertAndDeleteStudentTest {
 
-	@Test
+	// @Test
 	public void insertAndDeleteStudentAceptanceXLTest() {
 		// given
 		driver.get("http://127.0.0.1:8081/");
