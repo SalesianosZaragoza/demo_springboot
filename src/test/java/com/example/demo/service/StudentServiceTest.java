@@ -37,7 +37,7 @@ class StudentServiceTest {
 		student.setNombre("Alejandro");
 		student.setApellido("Tesán");
 		student.setId(null);
-		doNothing().when(repository).insert(student);
+		doNothing().when(repository).save(student);
 		List<Student> studentList = new ArrayList<Student>();
 		studentList.add(student);
 		doReturn(studentList).when(repository).findAll(); // usar esto con los @spy
@@ -49,8 +49,8 @@ class StudentServiceTest {
 		assertNotNull(listStudents);
 		assertFalse(listStudents.isEmpty());
 
-		verify(repository, times(1)).insert(student);
-		verify(repository, times(0)).update(student);
+		verify(repository, times(1)).save(student);
+		verify(repository, times(0)).save(student);
 		verify(repository, times(1)).findAll();
 
 	}
@@ -62,7 +62,7 @@ class StudentServiceTest {
 		student.setNombre("Alejandro");
 		student.setApellido("Tesán");
 		student.setId(3);
-		doNothing().when(repository).update(student);
+		doNothing().when(repository).save(student);
 		List<Student> studentList = new ArrayList<Student>();
 		studentList.add(student);
 		doReturn(studentList).when(repository).findAll(); // usar esto con los @spy
@@ -75,8 +75,8 @@ class StudentServiceTest {
 		assertNotNull(listStudents);
 		assertFalse(listStudents.isEmpty());
 
-		verify(repository, times(0)).insert(student);
-		verify(repository, times(1)).update(student);
+		verify(repository, times(0)).save(student);
+		verify(repository, times(1)).save(student);
 		verify(repository, times(1)).findAll();
 
 	}
