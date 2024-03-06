@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/rest/get?id={{ $randomint }}&test=",
+					"raw": "localhost:8080/rest/get?id={{$randomInt}}",
 					"host": [
 						"localhost"
 					],
@@ -22,12 +22,13 @@
 					],
 					"query": [
 						{
-							"key": "id",
-							"value": "{{ $randomint }}"
+							"key": "test",
+							"value": "",
+							"disabled": true
 						},
 						{
-							"key": "test",
-							"value": ""
+							"key": "id",
+							"value": "{{$randomInt}}"
 						}
 					]
 				}
@@ -41,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\" : {{$randomInt}}\n}\n\n",
+					"raw": "{\n    \"idMessage\" : {{$randomInt}}\n}\n\n",
 					"options": {
 						"raw": {
 							"language": "json"
